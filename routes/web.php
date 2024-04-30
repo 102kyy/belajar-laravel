@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Barang;
+use App\Models\Barrang;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,4 +80,16 @@ Route::get('myself/{name}/{bb}/{tb}', function ($a, $bb, $tb) {
 //route optional parameter -> ditandai dengan?
 Route::get('myname/{nama?}', function ($a = "Kiara") {
     return "my name is $a";
+});
+
+//menampilkan data dari database
+Route::get('/testmodel', function () {
+    $data = Post::all();
+    return $data;
+});
+
+//menampilkan data dari database2
+Route::get('/testmodelbarrang', function () {
+    $data = Barrang::all();
+    return $data;
 });
