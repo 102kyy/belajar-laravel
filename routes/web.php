@@ -1,8 +1,17 @@
 <?php
 
-use App\Models\Barang;
 use App\Models\Barrang;
+use App\Models\Pengguna;
 use App\Models\Post;
+use App\Models\Produk;
+use App\Models\Siswa;
+use App\Models\Telepon;
+use App\Models\Transaksi;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\MerekController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -93,3 +102,114 @@ Route::get('/testmodelbarrang', function () {
     $data = Barrang::all();
     return $data;
 });
+
+//menampilkan data dari database3
+Route::get('/testmodelsiswa', function () {
+
+    $post = Post::all();
+
+    return view('tampil_post', compact('post'));
+
+    //return view('tampil_siswa', compact('siswa'));
+    //$siswa = Siswa::all();
+    //$siswa = new Siswa;
+    //$siswa->nama = "Kim Taehyung";
+    //$siswa->jenis = "Laki Laki";
+    //$siswa->alamat = "Rancamanyar";
+    // $siswa->agama = "Islam";
+    // $siswa->telepon = "8658";
+    // $siswa->email = "v@gmail.com";
+    //$siswa = Siswa::where('nama', 'like', '%shaliha%')->get();
+    return $post;
+});
+
+//menampilkan data dari database4
+Route::get('/testmodelbarrang', function () {
+
+    $barrang = Barrang::all();
+
+    return view('tampil_barrang', compact('barrang'));
+
+    return $barrang;
+});
+
+//menampilkan data dari database5
+Route::get('/testmodelsiswa2', function () {
+
+    $siswa = Siswa::all();
+
+    return view('tampil_siswa', compact('siswa'));
+
+    return $siswa;
+});
+
+//menampilkan data dari database6
+Route::get('/testmodelpengguna', function () {
+
+    $pengguna = Pengguna::all();
+
+    return view('tampil_pengguna', compact('pengguna'));
+
+    return $pengguna;
+});
+
+//menampilkan data dari database7
+Route::get('/testmodeltelepon', function () {
+
+    $telepon = Telepon::all();
+
+    return view('tampil_Telepon', compact('telepon'));
+
+    return $telepon;
+});
+
+//menampilkan data dari database8
+Route::get('/testmodeltransaksi', function () {
+
+    $transaksi = Transaksi::all();
+
+    return view('tampil_Transaksi', compact('transaksi'));
+
+    return $transaksi;
+});
+
+// //route template
+
+// Route::get('/template', function (){
+
+//     $posts = Post::all();
+
+//     return view('template', compact('posts'));
+
+// });
+
+ //route template2
+
+// Route::get('/template2', function () {
+
+//     $produks = Produk::all();
+
+//     return view('template2', compact('produks'));
+// });
+
+//controller
+Route::get('post', [PostController::class, 'menampilkan']);
+Route::get('post/{id}', [PostController::class, 'show']);
+
+
+//controller
+Route::get('produk', [ProdukController::class, 'menampilkan']);
+Route::get('produk/{id}', [ProdukController::class, 'show']);
+
+//controller
+Route::get('/mereks', [MerekController::class, 'menampilkan']);
+Route::get('/mereks/{id}', [MerekController::class, 'show']);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//CRUD brand
+use App\Http\Controllers\BrandController;
+Route::resource('brand', BrandController::class);
